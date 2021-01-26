@@ -18,21 +18,16 @@ class Spaceship(GameObject):
     def draw_on(self, screen):
         """Draw the spaceship on the screen"""
 
-        # select the image, based on spaceship accelerating
-        if self.is_throttle_on:
-            new_image, rect = rotate_center(self.image_on, \
-                self.image_on.get_rect(), self.angle)
-        else:
-            new_image, rect = rotate_center(self.image, \
-                self.image.get_rect(), self.angle)
-        if (self.position.x > screen.get_width()) or (self.position.y > screen.get_height()) or (self.position.x < 0) or (self.position.y < 0):
-            multiplier = 2
-        else:
-            multiplier = 1
-            
-        draw_position_x = -screen.get_width() + 2.0 * self.position.x / screen.get_width() 
-        draw_position_y = -screen.get_height() + 2.0 * self.position.y / screen.get_height()
-        draw_centered(new_image, screen, (self.position.x, self.position.y))
+        new_image, rect = rotate_center(self.image, self.image.get_rect(), self.angle)
+        
+        draw_position_x = self.position.x
+        draw_position_y = self.position.y
+        
+        if (abs(draw_position_x) > screen.get_width()) or (abs(draw_position_y) > screen.get_height()):
+            draw_position_x = draw_position_x / 10.0
+            draw_position_y = draw_position_y / 10.0
+        
+        draw_centered(new_image, screen, (draw_position_x, draw_position_y))
 
 
     def move(self):
