@@ -1,5 +1,6 @@
 import math
 from physics import Vector2d
+from helpers import draw_centered
 
 class GameObject(object):
     """All game objects have a position and an image"""

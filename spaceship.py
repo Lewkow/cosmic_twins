@@ -8,9 +8,9 @@ class Spaceship(GameObject):
     def __init__(self, position):
         """initializing an Spaceship object given it's position"""
         super(Spaceship, self).__init__(position,\
-            load_image_convert_alpha('spaceship-off.png'))
+            load_image_convert_alpha('spaceship.png'))
         
-        self.image_on = load_image_convert_alpha('spaceship-on.png')
+        self.image_on = load_image_convert_alpha('spaceship.png')
         self.direction = Vector2d(0, -1)
         self.is_throttle_on = False
         self.angle = 0

@@ -43,7 +43,7 @@ class MyGame(object):
             True, (255, 0, 0))
 
         # load a spaceship image (only used to display number of lives)
-        self.lives_image = load_image_convert_alpha('spaceship-off.png')
+        self.lives_image = load_image_convert_alpha('spaceship.png')
 
         # Setup a timer to refresh the display FPS times per second
         self.FPS = 30
@@ -96,7 +96,7 @@ class MyGame(object):
     def start(self):
         """Start the game by creating the spaceship object"""
         self.spaceship = Spaceship((self.width//2, self.height//2))
-        self.planet = Planet((self.width//2, self.height//2))
+        self.planet = Planet((self.width//4, self.height//4))
         self.state = MyGame.PLAYING
 
 

@@ -3,7 +3,7 @@ from helpers import *
 
 class Planet(GameObject):
     def __init__(self, position=[0,0]):
-        image_name = 'rock-normal.png'
+        image_name = 'planet.png'
         super(Planet, self).__init__(position, load_image_convert_alpha(image_name))
         self.image = load_image_convert_alpha(image_name)
         
