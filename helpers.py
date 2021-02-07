@@ -32,23 +32,29 @@ def distance(p, q):
     return math.sqrt((p[0]-q[0])**2 + (p[1]-q[1])**2)
 
 
-def draw_info(screen, screen_width, screen_font, spaceship):
-    speed_s = "{:.2e}".format(spaceship.speed)
-    gamma_s = "{:.2e}".format(spaceship.get_gamma())
+def draw_info(screen, screen_width, screen_font, planet, spaceship):
+    speed_s = "{:.2f}".format(100*spaceship.get_speed_as_per_c())
+    gamma_s = "{:.2f}".format(spaceship.get_gamma())
     xx_s = "{:.2e}".format(spaceship.position.x)
     yy_s = "{:.2e}".format(spaceship.position.y)
     vx_s = "{:.2e}".format(spaceship.velocity.x)
     vy_s = "{:.2e}".format(spaceship.velocity.y)
-    speed_text = screen_font.render(str(f'sp: {speed_s}'), True, (0, 155, 0))
-    gamma_text = screen_font.render(str(f'ga: {gamma_s}'), True, (0, 155, 0))
-    xx_text = screen_font.render(str(f' x: {xx_s}'), True, (0, 155, 0))
-    yy_text = screen_font.render(str(f' y: {yy_s}'), True, (0, 155, 0))
-    vx_text = screen_font.render(str(f'vx: {vx_s}'), True, (0, 155, 0))
-    vy_text = screen_font.render(str(f'vy: {vy_s}'), True, (0, 155, 0))
+    sp_t = "{:.2f}".format(spaceship.object_time/365.0)
+    pl_t = "{:.2f}".format(planet.object_time/365.0)
+
+    speed_text = screen_font.render(str(f'speed [%c]: {speed_s}'), True, (0, 155, 0))
+    gamma_text = screen_font.render(str(f'gamma: {gamma_s}'), True, (0, 155, 0))
+    r_text = screen_font.render(str(f' r: ({xx_s}, {yy_s})'), True, (0, 155, 0))
+    v_text = screen_font.render(str(f'v: ({vx_s}, {vy_s})'), True, (0, 155, 0))
+    sp_text = screen_font.render(str(f'ship time (yrs):   {sp_t}'), True, (0, 155, 0))
+    pl_text = screen_font.render(str(f'planet time (yrs): {pl_t}'), True, (0, 155, 0))
+
 
     draw_centered(speed_text, screen,(screen_width-speed_text.get_width(), speed_text.get_height()+10))
     draw_centered(gamma_text, screen,(screen_width-speed_text.get_width(), gamma_text.get_height()+60))
-    draw_centered(vx_text, screen,(screen_width-vx_text.get_width(), vx_text.get_height()+110))
-    draw_centered(vy_text, screen,(screen_width-vy_text.get_width(), vy_text.get_height()+160))
-    draw_centered(xx_text, screen,(screen_width-xx_text.get_width(), xx_text.get_height()+210))
-    draw_centered(yy_text, screen,(screen_width-yy_text.get_width(), yy_text.get_height()+260))
+    # draw_centered(v_text, screen,(screen_width-v_text.get_width(), v_text.get_height()+110))
+    # draw_centered(r_text, screen,(screen_width-r_text.get_width(), r_text.get_height()+160))
+
+    draw_centered(sp_text, screen, (sp_text.get_width(), screen.get_height()-60))
+    draw_centered(pl_text, screen, (pl_text.get_width(), screen.get_height()-110))
+

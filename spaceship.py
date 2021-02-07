@@ -43,8 +43,8 @@ class Spaceship(GameObject):
         self.direction.y = -math.cos(math.radians(self.angle))
         
         # calculate the position from the direction and speed
-        self.position.x += self.velocity.x*self.speed
-        self.position.y += self.velocity.y*self.speed
+        self.position.x += self.velocity.x*self.speed / 100.0
+        self.position.y += self.velocity.y*self.speed / 100.0
         
         
     def rel_factor(self):

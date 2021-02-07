@@ -200,7 +200,11 @@ class MyGame(object):
                     # set the counter back to zero
                     self.counter = 0
                     
-            draw_info(self.screen, self.width, self.medium_font, self.spaceship)
+            draw_info(self.screen, self.width, self.medium_font, self.planet, self.spaceship)
+            
+            # update object clocks
+            self.spaceship.progress_object_time()
+            self.planet.progress_object_time()
 
         else:
             # draw the welcome texts

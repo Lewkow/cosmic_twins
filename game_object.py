@@ -23,3 +23,12 @@ class GameObject(object):
 
     def radius(self):
         return self.image.get_width()/2
+    
+    def get_speed_as_per_c(self):
+        if self.speed > self.c:
+            return -1
+        else:
+            return self.speed / self.c
+        
+    def progress_object_time(self, time_units=1):
+        self.object_time += time_units / self.get_gamma()
