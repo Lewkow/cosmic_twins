@@ -95,7 +95,7 @@ class MyGame(object):
 
     def start(self):
         """Start the game by creating the spaceship object"""
-        self.spaceship = Spaceship((self.width//2, self.height//2))
+        self.spaceship = Spaceship((self.width-20, self.height-20))
         self.planet = Planet((self.width//4, self.height//4))
         self.state = MyGame.PLAYING
 
@@ -138,11 +138,14 @@ class MyGame(object):
 
                         if keys[pygame.K_UP] or keys[pygame.K_w]:
                             
-                            if self.spaceship.speed < 20:
+                            if self.spaceship.speed < self.spaceship.LINEAR_SPEED_CUTOFF:
                                 boost = 0.01
-                                self.spaceship.velocity.x += math.sin(-math.radians(self.spaceship.angle))*boost
-                                self.spaceship.velocity.y += -math.cos(math.radians(self.spaceship.angle))*boost
-                                self.spaceship.speed = self.spaceship.velocity.magnitude()
+                            else:
+                                boost = 0.01 * (self.spaceship.c - self.spaceship.speed)
+
+                            self.spaceship.velocity.x += math.sin(-math.radians(self.spaceship.angle))*boost
+                            self.spaceship.velocity.y += -math.cos(math.radians(self.spaceship.angle))*boost
+                            self.spaceship.speed = self.spaceship.velocity.magnitude()
 
                         self.physics()
 

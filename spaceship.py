@@ -14,6 +14,7 @@ class Spaceship(GameObject):
         self.direction = Vector2d(0, -1)
         self.is_throttle_on = False
         self.angle = 0
+        self.LINEAR_SPEED_CUTOFF = 0.9 * self.c
 
     def draw_on(self, screen):
         """Draw the spaceship on the screen"""
